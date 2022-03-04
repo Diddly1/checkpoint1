@@ -12,6 +12,7 @@ STORAGE_ACCOUNT = "pietaricheckpoint1sa"
 BLOB_CONTAINER = "pietaricheckpoint1blob"
 LOCATION = 'westeurope'
 CONNECTIONSTR = 'DefaultEndpointsProtocol=https;AccountName=pietaricheckpoint1sa;AccountKey=aP63dAbVnJmcCimD5+TL9hDuH2Pyr3BZ4g9qMOaeVgxmZR4U4r26v91CigT4qRDWGzS/+9cZVFUctp++TrhFJg==;EndpointSuffix=core.windows.net'
+FILEPATH = 'c:\\temp\\checkpoint1\\vko6-1\\checkpoint.txt'
 FILENAME = 'checkpoint.txt'
 
 #Haetaan ja kirjoitetaan ensin json-datasta haetut kentät tiedostoon
@@ -20,7 +21,7 @@ r = requests.get('https://2ri98gd9i4.execute-api.us-east-1.amazonaws.com/dev/aca
 data = r.json()
 
 for d in data['items']:
-    with open(FILENAME, 'a') as f:
+    with open(FILEPATH, 'a') as f:
         print(f'{d["parameter"]}', file=f)
 
 #Luodaan uusi RG, Storage Account ja Blob Container, johon tiedosto uploadataan
@@ -80,5 +81,5 @@ blob_container = storage_client.blob_containers.create(
 #Upload cretaed file to blob container
 blob = BlobClient.from_connection_string(conn_str=CONNECTIONSTR, container_name=BLOB_CONTAINER, blob_name=FILENAME)
 
-with open("c:\\temp\\checkpoint1\\checkpoint.txt", "rb") as data:
+with open("c:\\temp\\checkpoint1\\vko6-1\\checkpoint.txt", "rb") as data:
     blob.upload_blob(data)

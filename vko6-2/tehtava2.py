@@ -27,7 +27,6 @@ while file_present == False:
 parser = argparse.ArgumentParser()
 parser.add_argument("luku1", help="Syötä luku, jolla määrität, monta riviä tulostetaan", type=int)
 args = parser.parse_args()
-#print(args.luku1)
 
 f = open(FILEPATH, "r")
 number_of_lines = args.luku1
@@ -35,5 +34,3 @@ number_of_lines = args.luku1
 for i in range(number_of_lines):
     line = f.readline()
     print(line)
-
-#print(f.read())
